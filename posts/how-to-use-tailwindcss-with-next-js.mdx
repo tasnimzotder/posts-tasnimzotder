@@ -1,0 +1,87 @@
+---
+id: 2
+title: How to use Tailwind CSS with Next.js?
+seoTitle: How to use Tailwind CSS with Next.js?
+abstract: Tailwind CSS is a utility-first CSS framework for styled-components. It is a tool for creating reusable, maintainable stylesheets. It is a tool for creating reusable, maintainable stylesheets.
+isPublished: true
+publishedOn: 2021-01-21T00:00:00-0530
+layout: Article
+cover: "./../assets/images/2-cover.webp"
+tags:
+    - Web
+    - Programming
+    - How To
+---
+
+## Steps to use Tailwind CSS with Next.js
+
+### 1. Install the dependencies
+
+using `yarn`
+
+<MxCodeBlock props={{ language: 'bash', filename: 'terminal' }}>
+{`yarn add -D tailwindcss@latest postcss@latest autoprefixer@latest`}
+</MxCodeBlock>
+
+using `npm`
+
+<MxCodeBlock props={{ language: 'bash', filename: 'terminal' }}>
+{`npm install -D tailwindcss@latest postcss@latest autoprefixer@latest`}
+</MxCodeBlock>
+
+### 2. Create the config file
+
+<MxCodeBlock props={{ language: 'bash', filename: 'terminal' }}>
+{`yarn tailwind init -p`}
+</MxCodeBlock>
+
+This will create a `tailwind.config.js` file in the root directory.
+
+<MxCodeBlock props={{ language: 'javascript', filename: 'tailwind.config.js' }}>
+{`module.exports = {
+    purge: [],
+    darkMode: false, // or 'media' or 'class'
+    theme: {
+        extend: {},
+    },
+    variants: {
+        extend: {},
+    },
+    plugins: [],
+}`}
+</MxCodeBlock>
+
+This command also creates a `postcss.config.js` file.
+
+<MxCodeBlock props={{ language: 'javascript', filename: 'postcss.config.js' }}>
+{`module.exports = {
+    plugins: {
+        tailwindcss: {},
+        autoprefixer: {},
+    },
+}`}
+</MxCodeBlock>
+
+### 3. Configure Tailwind CSS
+
+In `tailwind.config.js` file, configure the `purge` option with the paths to all the pages & components so Tailwind can tree-shake unused styles in production build.
+
+<MxCodeBlock props={{ language: 'javascript', filename: 'tailwind.config.js' }}>
+{`...
+purge: ['./pages/**/*.{js,ts,jsx,tsx}', './components/**/*.{js,ts,jsx,tsx}']
+...`}
+</MxCodeBlock>
+
+### 4. Include Tailwind in CSS
+
+Open the `styles/global.css` file and include the following lines.
+
+<MxCodeBlock props={{ language: 'css', filename: 'styles/global.css' }}>
+{`@tailwind base;
+@tailwind components;
+@tailwind utilities;`}
+</MxCodeBlock>
+
+### 5 Add Tailwind CSS IntelliSense to VS Code
+
+For the automation to work, you need to install the `vscode-tailwindcss` extension. This extension will add the Tailwind CSS IntelliSense to VS Code. [Tailwind CSS IntelliSense](https://marketplace.visualstudio.com/items?itemName=bradlc.vscode-tailwindcss)
