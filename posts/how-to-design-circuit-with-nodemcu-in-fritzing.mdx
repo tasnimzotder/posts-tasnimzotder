@@ -1,0 +1,90 @@
+---
+id: 5
+title: How to Design Circuit with NodeMCU in Fritzing?
+seoTitle: How to Design Circuit with NodeMCU in Fritzing?
+abstract: Fritzing is a free and open-source software for designing and prototyping electronics. In this post, I will show how to design a circuit with NodeMCU in Fritzing. I will also show how to use Fritzing to design a circuit with NodeMCU.
+isPublished: true
+publishedOn: 2022-11-22T00:00:00-0530
+layout: Article
+cover: "./../assets/images/5-cover.webp"
+tags:
+    - How To
+    - IoT
+---
+
+Fritzing is an open-source software to design circuits, PCB, and write code for Arduino devices. Fritzing provides components from a variety of designers and producers. Besides, one can use any custom components by adding the part file which has a file extension `fzpz`. In this post, we'll learn how to design circuits with NodeMCU in Fritzing.
+
+### Components & Services
+
+- [Fritzing](https://fritzing.org/)
+- NodeMCU Part File (`.fzpz`)
+
+## Steps to Design Circuit with NodeMCU in Fritzing
+
+### 1. Download Fritzing Software
+
+1. To download Fritzing, visit [Fritzing.org](https://fritzing.org/download/). But, if you want save money, you can download it from a third-party website [Filehorse](https://www.filehorse.com/download-fritzing-64/).
+2. After downloading, move the zip file to a directory where you want to install Fritzing.
+3. Unzip the zip file.
+4. In the unzipped directory, there is a file named `Fritzing.exe`. Make a shortcut to the `Fritzing.exe` file in your desktop (optional).
+
+<MxImage
+  alt="Fritzing.exe File"
+  src="./../assets/images/5-fritzing-exe-file.jpg"
+  orientation="horizontal"
+  size="full"
+/>
+
+### 2. Add NodeMCU Part File to Fritzing
+
+To add the NodeMCU part file to Fritzing, do the following:
+
+1. Download the NodeMCU part file [NodeMCU v1.0](https://github.com/squix78/esp8266-fritzing-parts/blob/master/nodemcu-v1.0/NodeMCUV1.0.fzpz).
+2. Open the Fritzing software.
+3. To add the part file, go to `File --> Open...` and select the `NodeMCU---.fzpz` part file.
+4. The part file will be added to the library.
+5. To add NodeMCU to the library, `right-click` on the part file and select `Add to bin... --> My Parts`.
+
+<MxImage
+  alt="NodeMCU in Fritzing"
+  src="./../assets/images/5-nodemcu-in-fritzing.jpg"
+  orientation="horizontal"
+  size="half"
+/>
+
+### 3. Design Circuit with NodeMCU in Fritzing
+
+To design a circuit with NodeMCU in Fritzing, do the following:
+
+1. Open the Fritzing software.
+2. Add NodeMCU by searching it in the Parts section.
+<MxImage
+  alt="Parts section - Fritzing"
+  src="./../assets/images/5-parts-section-fritzing.jpg"
+  orientation="horizontal"
+  size="half"
+/>
+3. Now add a breadboard and an LED.
+<MxImage
+  alt="NodeMCU, LED and Breadboard - Fritzing"
+  src="./../assets/images/5-nodemcu-led-and-breadboard-fritzing.jpg"
+  orientation="vertical"
+  size="half"
+/>
+4. Now make the connection between the NodeMCU and the LED.
+<MxImage
+  alt="NodeMCU complete circuit - Fritzing"
+  src="./../assets/images/5-nodemcu-complete-circuit.jpg"
+  orientation="vertical"
+  size="half"
+/>
+
+### 4. Export the Circuit Design
+
+To export the circuit design, do the following:
+
+1. In the Fritzing software, go to `File --> Export --> as Image --> PNG/JPG/SVG/PDF`.
+
+## References
+
+- [Fritzing](https://fritzing.org/)
