@@ -30,32 +30,34 @@ tags:
 
 1. Open a terminal and type
 
-```bash
-sudo apt update
-sudo apt install git
-```
+<MxCodeBlock props={{ language: 'bash', filename: 'terminal' }}>
+{`sudo apt update
+sudo apt install git`}
+</MxCodeBlock>
+
 
 ## Configure Git
 
 Open a terminal and type,
 
-```bash
-git config --global user.name "<YOUR_NAME>"
-git config --global user.email "<YOUR_EMAIL>"
-```
+<MxCodeBlock props={{ language: 'bash', filename: 'terminal' }}>
+{`git config --global user.name "<YOUR_NAME>"
+git config --global user.email "<YOUR_EMAIL>"`}
+</MxCodeBlock>
 
 To verify that your Git configuration is correct, open a terminal and type,
 
-```bash
-git config --list
-```
+<MxCodeBlock props={{ language: 'bash', filename: 'terminal' }}>
+{`git config --list`}
+</MxCodeBlock>
 
 This will show you the current configuration.
 
-```bash
-user.name = "<YOUR_NAME>"
-user.email = "<YOUR_EMAIL>"
-```
+<MxCodeBlock props={{ language: 'bash', filename: 'terminal' }}>
+{`user.name = "<YOUR_NAME>"
+user.email = "<YOUR_EMAIL>"`}
+</MxCodeBlock>
+
 
 <MxCalloutCard
 type={'default'}
@@ -78,30 +80,34 @@ There are lots of repos on GitHub. You can search and find the repo you want. Ch
 
 Copy the `HTTPS` clone link and paste it in your terminal. The link is like `https://github.com/<USERNAME>/<REPO_NAME>.git`
 
-```bash
-git clone <COPIED_LINK>
-```
+<MxCodeBlock props={{ language: 'bash', filename: 'terminal' }}>
+{`git clone <COPIED_LINK>`}
+</MxCodeBlock>
+
 
 ### 4. Open the repo in a code editor (for example, VS Code)
 
-```
-code <REPO_NAME>
-```
+<MxCodeBlock props={{ language: 'bash', filename: 'terminal' }}>
+{`code <REPO_NAME>`}
+</MxCodeBlock>
+
 
 ### 5. Change, Add, and Commit your changes
 
 Make some changes to the repo. After that, add all the changes you made to the repo and commit them.
 
-```bash
-git add .
-git commit -m "Added some changes"
-```
+<MxCodeBlock props={{ language: 'bash', filename: 'terminal' }}>
+{`git add .
+git commit -m "Added some changes"`}
+</MxCodeBlock>
+
 
 Push your changes to the remote repo.
 
-```bash
-git push origin main
-```
+<MxCodeBlock props={{ language: 'bash', filename: 'terminal' }}>
+{`git push origin main`}
+</MxCodeBlock>
+
 
 ### 6. Open a pull request
 
