@@ -1,0 +1,108 @@
+---
+id: 4
+title: How to Setup Arduino IDE for NodeMCU?
+seoTitle: How to Setup Arduino IDE for NodeMCU?
+abstract: Arduino IDE is a tool for programming microcontrollers. It also can be used to program other devices like ESP8266 (NodeMCU), ESP32, etc.
+isPublished: true
+publishedOn:2022-01-16T00:00:00-0530
+layout:
+cover: "./../assets/images/4-cover.webp"
+tags:
+    - How To
+    - IoT
+---
+
+## Steps to Set up Arduino IDE for NodeMCU
+
+### 1. Download Arduino IDE
+
+Arduino IDE is a open-source tool for programming microcontrollers like Arduino, NodeMCU, ESP8266, etc. Arduino IDE is available for Windows, Mac, Linux. You can download it from 👉 [Software | Arduino](https://www.arduino.cc/en/software).
+
+<MxImage
+  alt="Arduino IDE Download Page"
+  src="./../assets/images/4-arduino-ide-download-page.png"
+  orientation="horizontal"
+  size="full"
+/>
+
+### 2. Add NodeMCU's URL to Arduino IDE
+
+To add NodeMCU's URL to Arduino IDE, you need to follow the steps below.
+
+1. Open the Arduino IDE.
+2. Go to `File --> Preferences`.
+3. In the "Additional Boards Manager" section, add the following link:
+
+<MxCodeBlock props={{ language: 'bash', filename: 'terminal' }}>
+  {`http://arduino.esp8266.com/stable/package_esp8266com_index.json`}
+</MxCodeBlock>
+
+<MxImage
+  alt="Arduino IDE Preferences Page"
+  src="./../assets/images/4-arduino-ide-preferences.jpg"
+  orientation="horizontal"
+  size="full"
+/>
+
+### 3. Add the NodeMCU Board to Arduino IDE
+
+To add the NodeMCU Board to Arduino IDE, you need to follow the steps below.
+
+1. In the Arduino IDE, go to `Tools --> Board: "---" --> Boards Manager`.
+2. Search for `esp8266`.
+3. Install the "esp8266" board by "ESP8266 Community". It might take a while to install.
+
+<MxImage
+  alt="Boards Manager Page"
+  src="./../assets/images/4-boards-manager.jpg"
+  orientation="horizontal"
+  size="full"
+/>
+
+### 4. Select the NodeMCU Board
+
+To select the board's port, you need to follow the steps below.
+
+1. Connect the NodeMCU to your computer via USB.
+2. In the Arduino IDE, go to `Tools --> Port` and select the port that NodeMCU is connected to.
+
+To select the board, you need to follow the steps below.
+
+1. In the Arduino IDE, go to `Tools --> Board --> ESP8266 Boards`.
+2. Select the board that NodeMCU is connected to. For example, `NodeMCU 1.0 (ESP-12E Module)`.
+
+<MxImage
+  alt="Select Board"
+  src="./../assets/images/4-select-board.jpg"
+  orientation="horizontal"
+  size="full"
+/>
+
+### 5. Write a Sketch
+
+Like Arduino, sketches for NodeMCU are written in `C` or `C++` and are compiled to `.ino` files. A sample sketch for blinking an LED is shown below.
+
+<MxCodeBlock props={{ language: 'cpp', filename: 'main.ino' }}>
+  {`void setup() {
+ pinMode(LED_BUILTIN, OUTPUT); // initialize the LED_BUILTIN as OUTPUT pin
+}
+
+void loop() {
+ digitalWrite(LED_BUILTIN, 0); // Turn on the LED (for LED_BUILTIN, in turns ON on low voltage)
+    delay(1000); // wait for 1000 ms
+    digitalWrite(LED_BUILTIN, 1);
+    delay(500);
+}`}
+</MxCodeBlock>
+
+### 6. Upload the Sketch to NodeMCU
+
+To upload the sketch to NodeMCU, you need to follow the steps below.
+
+1. In the Arduino IDE, click on the ✅ (checkmark) icon in the top to verify that the sketch is correct.
+2. Click on the ➡️ (right arrow) icon in the top to upload the sketch to NodeMCU.
+3. The sketch will be uploaded to NodeMCU and the LED will blink.
+
+## References
+
+- [Software | Arduino](https://www.arduino.cc/en/software)
