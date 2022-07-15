@@ -1,0 +1,84 @@
+---
+id: 3
+title: How To Write Code on Pi Pico using CircuitPython & VS Code?
+seoTitle: How To Write Code on Pi Pico using CircuitPython & VS Code?
+abstract: CircuitPython is a Python package for the Raspberry Pi that allows you to write code in Python. It is a Python package for the Raspberry Pi that allows you to write code in Python. It is a Python package for the Raspberry Pi that allows you to write code in Python.
+isPublished: true
+publishedOn: 2021-11-04T00:00:00-0530
+layout: Article
+cover: "./../assets/images/3-cover.webp"
+tags:
+    - How To
+    - Programming
+    - IoT
+---
+
+## Pi Pico
+
+Raspberry Pi Pico is a low-cost, RP2040 chip-based microcontroller. It has dual-core APR Cortex M0+ processor. Besides, the board has a temperature sensor on-board and 26 multi-function GPIO pins.
+
+Learn More 👉 [Raspberry Pi Pico](https://www.raspberrypi.com/documentation/microcontrollers/raspberry-pi-pico.html)
+
+<MxYouTubeVideo videoId={'m36qgDoUQFs'} />
+
+<!-- todo: pi pico pinout image -->
+
+## Steps to use CircuitPython with VS Code
+
+### 1. Download and upload CircuitPython `.uf2` file
+
+1. Download the `.uf2` file for Raspberry Pi Pico from [Pico Download (circuitpython.org)](https://circuitpython.org/board/raspberry_pi_pico/).
+2. Push and hold the BOOTSEL button on the Pi Pico and plug in the USB cable.
+3. It will mount the Pico as a mass storage device (RPI-RP2) in the computer.
+4. Copy the `.uf2` file to the RPI-RP2 volume.
+
+Learn More 👉 [CircuitPython](https://circuitpython.org/)
+
+<MxImage alt="connect Pi Pico" src="./../assets/images/3-connect-pi-pico.png" orientation="horizontal" size="half" />
+
+### 2. Download VS Code and install CircuitPython extension
+
+1. Download VS code from [Visual Studio Code](https://code.visualstudio.com/).
+2. Install the `CircuitPython` extension by joedevivo from [VS Code Marketplace](https://marketplace.visualstudio.com/items?itemName=joedevivo.vscode-circuitpython).
+
+<MxImage alt="CircuitPython demo" src="./../assets/images/3-circuitpython-demo.gif" orientation="horizontal" size="full" />
+
+### 3. Write Code
+
+1. Open a new directory in VS Code.
+2. Open command palette and select `CircuitPython: Select Serial POrt`.
+3. Select the COM port of your Pi Pico. (For example, `COM3`)
+4. Create a python file in the root directory. (For example, `main.py`)
+5. Write your code in the file.
+
+<MxCodeBlock props={{ language: 'python', filename: 'main.py' }}>
+{`# build-in LED blink in Pi Pico using CircuitPython
+
+import time
+import board
+import digitalio
+
+led = digitalio.DigitalInOut(board.LED)
+led.direction = digitalio.Direction.OUTPUT # set the direction of the pin
+
+while True:
+    led.value = True # turn the LED on
+    time.sleep(0.5) # wait for 0.5 seconds
+    led.value = False # turn the LED off
+    time.sleep(0.5) # wait for 0.5 seconds`}
+</MxCodeBlock>
+
+### 4. Upload code to Pi Pico
+
+<MxCalloutCard
+type={'attention'}
+message={"Here `E:` is the drive letter of the RPI-RP2 volume. Change it according to your system."}
+/>
+
+<MxCodeBlock props={{ language: 'powershell', filename: 'powershell' }}>
+{`$currDir = Get-Location
+$targetDir = "E:"
+
+Remove-Item $targetDir\* -Recurse -Force
+Copy-Item $currDir\* $targetDir\ -Recurse -Force`}
+</MxCodeBlock>
