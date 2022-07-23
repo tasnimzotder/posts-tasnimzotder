@@ -1,0 +1,152 @@
+---
+id: 7
+title: GCP Storage Services
+seoTitle: Storage Services offered by Google Cloud Platform
+abstract: GCP is a cloud provider. It provides a number of services, including storage. This post will cover the storage services provided by GCP.
+isPublished: true
+publishedOn: 2022-07-23T00:00:00-0530
+layout: Article
+cover: "./../assets/images/7/7-cover.webp"
+tags:
+    - Cloud
+    - GCP
+---
+
+## Storage Types
+
+### Object Storage
+
+Object or blob are the collection of data stored as a single entity. Objects are stored in a flat environment with no sub-directories. In GCP, objects are grouped in buckets and each object can be individually addressed by a URL like `https://storage.cloud.google.com/BUCKET_NAME/OBJECT_NAME`. The size of an object is not limited by the attached storage. Object has their metadata and object can have versions. [Google Cloud Storage](#cloud-storage) is a cloud storage service that provides object storage.
+
+### File Storage
+
+In file storage, all the data is stored in a single file. File storage uses __hierarchical directory structure__. File storage is suitable for storing operating system files. File storage can also be stored on a network-attached storage like [Cloud Filestore](#cloud-filestore).
+
+### Block Storage
+
+In block storage, data is divided into __fixed sized blocks of data__. Each block is stored in a separate file with unique identifiers. In Linux, the common size if a block is `4KB` and in relational databases, the size of a block is greater than or equal to `8KB`. Generally in GCP, block storage is used in ephemeral storage (short-lived) and persistent storage (long-lived) attached to a VM. [Persistent Disk](#persistent-disk) and [Local SSD](#local-ssd) are a cloud storage services that provides block storage.
+
+---
+
+<MxImage
+  alt="gcp-storage-products"
+  src="./../assets/images/7/7-gcp-storage-products.webp"
+  orientation="horizontal"
+  size="full"
+/>
+
+## Storage Products
+
+### Cloud Storage
+
+- Cloud Storage is a GCP's storage service. It uses [object storage](#object-storage) to store data in containers called buckets.
+- The buckets are associated with project. The buckets can be accessed by a URL like `https://storage.cloud.google.com/BUCKET_NAME`.
+- The details of a object is stored in a metadata.
+- The objects are immutable, that means when the object is updated, it gets replaced by the new version.
+- When object versioning is enabled, old or deleted object can be retained as a noncurrent version.
+- The objects in a buckets can have different permissions for different users and services such as `update`, `create` or `delete`.
+- The Cloud Storage has multiple [storage classes](#storage-classes). Scroll down to read about [storage classes](#storage-classes).
+
+#### Use cases
+
+- Media content storage & delivery: image, video, audio, documents, etc.
+- Integrated storage for analytics and ML.
+- Data backup and archival.
+
+### Cloud Filestore
+
+- Cloud Filestore uses [file storage](#file-storage) to store data in files. It is a network-attached storage.
+- Cloud Filestore offers low-latency and high-availability storage.
+- Cloud Filestore offers multiple service tiers.
+- Cloud FIletore supports __NFSv3__ protocol which supports asynchronous file operations.
+- This product is mainly used with Compute Engine VMs and Google Kubernetes Engine (GKE) clusters.
+
+#### Service Tiers
+
+1. __Basic HDD__: The storage is stored on a hard disk. This is suitable for file sharing, software development, and use with GKE (Google Kubernetes Engine) workloads.
+2. __Basic SSD__: This ties similar to Basic HDD, but the storage is stored on a solid state drive. Basic SSD is more durable and has a higher performance at a higher cost.
+3. __High Scale SSD__: High Scale SSD is suitable for high performance computing (HPC) workloads. Genome sequencing, and financial analysis are examples of HPC workloads.
+4. __Enterprise__: Enterprise is a tier that provides a higher level of availability and data replication over multiple zones. This tier is designed for enterprise-grade Network File System (NFS) storage. Batch computing, media rendering and transcoding, advanced AI are examples of enterprise workloads.
+
+#### Data Encryption
+
+1. __Encryption at rest__: Data is encrypted at rest. This means that the data is encrypted when it is stored in the cloud. This is the default encryption. The encryption key is managed by Google.
+2. __Encryption in transit__: The data is encrypted when it is transferred from the user to the storage in the cloud.
+
+#### Use cases
+
+- Media rendering.
+- Web content management.
+- Enterprise application migration.
+
+### Local SSD
+
+- Local SSD uses [block storage](#block-storage) to store data in files. It is a local storage.
+- Local SSDs are ephemeral storage (short-lived) that is attached to a VM for higher performance.
+- Local SSD offers very high IOPS and low latency.
+- Local SSDs are used to store temporary data such as caches or scratch processing space.
+- The data stored in Local SSD is automatically encrypted at rest.
+- Stored data gets deleted when the VM is terminated.
+
+### Persistent Disk
+
+- Like [Local SSD](#local-ssd) Persistent Disk uses [block storage](#block-storage) to store data in files.
+- Persistent Disks are dedicated HDDs and SSDs that are used for enterprise and database applications.
+- Persistent Disks are durable are high performance and can be used for long-lived storage.
+- Persistent Disks can be attached to VM instances or Google Compute Engine (GCE) clusters.
+- Persistent Disks are located independently of the VM instance.
+- Multiple VM instances can use the same Persistent Disk.
+
+#### Types of Persistent Disks (Block Storage)
+
+1. Standard Persistent Disks (HDD)
+2. Balanced Persistent Disks (SSD)
+3. Performance Persistent Disks (SSD)
+4. Extreme Persistent Disks (SSD)
+5. Local SSDs
+
+---
+
+## Comparing Storage Products
+
+| Field       | Cloud Storage | Cloud Filestore | Local SSD    | Persistent Disk   |
+| ----------- | ------------- | --------------- | ------------ | ----------------- |
+| Scalability | Yes           | Yes             | No           | Yes               |
+| Sharing | Read/write from anywhere | Mountable on VMs, remote clients, and GKE clusters | Not shareable | Limited sharing |
+| Encryption keys | Google-managed, customer-managed, and customer supplied | Google-managed and customer-managed | Google-managed | Google-managed, customer-managed, and customer supplied |
+| Persistent | Lifetime of the bucket | Lifetime of the instance | Ephemeral | Lifetime of the disk |
+| Management | Fully managed | Fully Managed | Manually format, strip, and mount | Manually format and mount |
+
+---
+
+## Storage Classes
+
+There are four types of storage classes in [Cloud Storage](#cloud-storage). Each classes servers different purpose. The class-type is stored in the metadata of a object. Unless specified explicitly, the newly created object inherit the storage class from the bucket. The default storage class of a bucket is __Standard__ storage.
+
+| Storage Class | Available SLA               | Min. Storage Duration | Use Cases         |
+| ------------- | --------------------------- | --------------------- | ----------------- |
+| Standard      | >99.99% (MR)<br/>99.99% (R) | None                  | Content Storage   |
+| Nearline      | 99.95% (MR)<br/>99.9% (R)   | 30 days               | Backups           |
+| Coldline      | 99.95% (MR)<br/>99.9% (R)   | 90 days               | Disaster Recovery |
+| Archive       | 99.95% (MR)<br/>99.9% (R)   | 365 days              | Archiving         |
+
+\*__MR__ -> in Multi-regional, \*__R__ -> in Regional
+
+### Additional Classes
+
+- __Multi-Regional storage__
+  - Objects can be stored in __multi-regions__ or __dual regions__.
+- __Regional storage__
+  - Objects are only stored in a chosen region.
+- __Durable Reduced Availability (DRA) storage__
+  - In terms of availability, DRA has low availability SLA (99%).
+  - DRA has higher pricing for operation.
+  - The durability of DRA is higher than other classes.
+
+---
+
+## References
+
+- [Cloud Storage Options | Google Cloud](https://cloud.google.com/products/storage)
+- [Google Cloud Developer Cheat Sheet](https://googlecloudcheatsheet.withgoogle.com/)
+- [Object vs. File vs. Block Storage: What’s the Difference? | IBM](https://www.ibm.com/cloud/blog/object-vs-file-vs-block-storage)
